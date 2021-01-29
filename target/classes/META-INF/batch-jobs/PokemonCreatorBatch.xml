@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="testjob" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+    <properties>
+        <property name="totalPokemons" value="10"/>
+    </properties>
+    <step id="teststep">
+        <batchlet ref="PokemonCreatorBatch"/>
+    </step>
+</job>
+
