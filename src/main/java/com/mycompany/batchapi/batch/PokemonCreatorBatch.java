@@ -45,8 +45,8 @@ public class PokemonCreatorBatch implements Batchlet {
 
             for (int i = totalPokemons; i < (totalPokemons + totalPokemonsForCreate); i++) {
                 Thread.sleep(5000);
-                logger.log(Level.INFO, "Creando Pokemon {0}", String.valueOf(i));
-                this.pokemonService.savePokemon(new PokemonDto(null, "Pokemon " + String.valueOf(i), "Tipo " + String.valueOf(i)));
+                logger.log(Level.INFO, "Creating Pokémon {0}", String.valueOf(i));
+                this.pokemonService.savePokemon(new PokemonDto(null, "Pokemon " + String.valueOf(i), "Type " + String.valueOf(i)));
             }
         }
 

@@ -51,9 +51,9 @@ public class PokemonController {
                     .build();
 
         } catch (Exception ex) {
-            this.logger.log(Level.SEVERE, "Ocurrió un error no esperado al intentar obtener los pokemones.", ex);
+            this.logger.log(Level.SEVERE, "An unexpected error occurred when trying to obtain the pokemons.", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity(new ErrorDto("Ocurrió un error no esperado al intentar obtener los pokemones."))
+                    .entity(new ErrorDto("An unexpected error occurred when trying to obtain the pokemons."))
                     .build();
         }
     }
@@ -68,9 +68,9 @@ public class PokemonController {
                     .build();
 
         } catch (Exception ex) {
-            this.logger.log(Level.SEVERE, "Ocurrió un error no esperado al intentar guardar el pokémon.", ex);
+            this.logger.log(Level.SEVERE, "An unexpected error occurred when trying to save the pokemon.", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity(new ErrorDto("Ocurrió un error no esperado al intentar guardar el pokémon."))
+                    .entity(new ErrorDto("An unexpected error occurred when trying to save the pokemon."))
                     .build();
         }
     }
@@ -86,9 +86,9 @@ public class PokemonController {
                     .build();
 
         } catch (Exception ex) {
-            this.logger.log(Level.SEVERE, "Ocurrió un error no esperado al intentar generar el batch para generar los pokemones.", ex);
+            this.logger.log(Level.SEVERE, "An unexpected error occurred when trying to generate the batch to generate the pokemon.", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity(new ErrorDto("Ocurrió un error no esperado al intentar generar el batch para generar los pokemones."))
+                    .entity(new ErrorDto("An unexpected error occurred when trying to generate the batch to generate the pokemon."))
                     .build();
         }
     }
@@ -104,9 +104,9 @@ public class PokemonController {
                     .build();
 
         } catch (Exception ex) {
-            this.logger.log(Level.SEVERE, "Ocurrió un error no esperado al intentar generar el batch para generar los pokemones.", ex);
+            this.logger.log(Level.SEVERE, "An unexpected error occurred when trying to generate the batch to generate the pokemon.", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity(new ErrorDto("Ocurrió un error no esperado al intentar generar el batch para generar los pokemones."))
+                    .entity(new ErrorDto("An unexpected error occurred when trying to generate the batch to generate the pokemon."))
                     .build();
         }
     }

@@ -26,7 +26,7 @@ import javax.ws.rs.core.Response;
 
 /**
  *
- * @author dperez
+ * author dperez
  */
 @ApplicationScoped
 public class PokemonService {
@@ -48,9 +48,9 @@ public class PokemonService {
         try {
             return BackendResponse.ok(this.pokemonsDto, Response.Status.OK);
         } catch (Exception ex) {
-            this.logger.log(Level.SEVERE, "Ocurrió un error no esperado al obtener los pokemones.", ex);
+            this.logger.log(Level.SEVERE, "An unexpected error occurred when obtaining pokemon.", ex);
             return BackendResponse.error(Response.Status.INTERNAL_SERVER_ERROR,
-                    "Ocurrió un error no esperado al obtener los pokemones.", ex.getMessage());
+                    "An unexpected error occurred when obtaining pokemon.", ex.getMessage());
         }
     }
 
@@ -69,12 +69,12 @@ public class PokemonService {
                     this.pokemonsDto.set(this.pokemonsDto.indexOf(optPokemon.get()), pokemonDto);
                     return BackendResponse.ok(pokemonDto, Response.Status.OK);
                 } else {
-                    return BackendResponse.error("El Pokémon que intentas actualizar no existe.", Response.Status.NOT_FOUND);
+                    return BackendResponse.error("The Pokemon you are trying to update does not exist.", Response.Status.NOT_FOUND);
                 }
             }
         } catch (Exception ex) {
-            this.logger.log(Level.SEVERE, "Ocurrió un error no esperado al guardar el pokémon.", ex);
-            return BackendResponse.error("Ocurrió un error no esperado al guardar el pokémon.", Response.Status.INTERNAL_SERVER_ERROR);
+            this.logger.log(Level.SEVERE, "An unexpected error occurred while saving the Pokemon.", ex);
+            return BackendResponse.error("An unexpected error occurred while saving the Pokemon.", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -82,18 +82,18 @@ public class PokemonService {
         try {
             Properties properties = new Properties();
             properties.setProperty("totalPokemons", totalPokemons.toString());
-            
+
             BatchJobDto batchJobDto = new BatchJobDto();
             batchJobDto.setName("PokemonCreatorBatch");
-           
-            JobOperator operador = BatchRuntime.getJobOperator();
-            batchJobDto.setId(operador.start("PokemonCreatorBatch", properties));
-            
+
+            JobOperator operator = BatchRuntime.getJobOperator();
+            batchJobDto.setId(operator.start("PokemonCreatorBatch", properties));
+
             return BackendResponse.ok(batchJobDto, Response.Status.OK);
 
         } catch (Exception ex) {
-            this.logger.log(Level.SEVERE, "Ocurrió un error no esperado al crear el batch para generar pokemones.", ex);
-            return BackendResponse.error("Ocurrió un error no esperado al crear el batch para generar pokemones.", Response.Status.INTERNAL_SERVER_ERROR);
+            this.logger.log(Level.SEVERE, "An unexpected error occurred while creating the batch to generate pokemons.", ex);
+            return BackendResponse.error("An unexpected error occurred while creating the batch to generate pokemons.", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -101,38 +101,38 @@ public class PokemonService {
         try {
             JobExecution jobExecution = BatchRuntime.getJobOperator().getJobExecution(jobExecutionId);
             BatchJobStatusDto batchJobStatusDto = new BatchJobStatusDto();
-            
+
             switch (jobExecution.getBatchStatus()) {
                 case STARTING:
                 case STARTED:
                     batchJobStatusDto.setStatus(1);
-                    batchJobStatusDto.setDescription("El trabajo a sido o se está iniciando.");
+                    batchJobStatusDto.setDescription("The job has started or is starting.");
                     break;
                 case STOPPING:
                 case STOPPED:
                     batchJobStatusDto.setStatus(2);
-                    batchJobStatusDto.setDescription("El trabajo se ha detenido o se esta deteniendo.");
+                    batchJobStatusDto.setDescription("The job has stopped or is stopping.");
                     break;
                 case FAILED:
                 case ABANDONED:
                     batchJobStatusDto.setStatus(3);
-                    batchJobStatusDto.setDescription("El trabajo ha sido abandonado o ha fallado.");
+                    batchJobStatusDto.setDescription("The job has been abandoned or failed.");
                     break;
                 case COMPLETED:
                     batchJobStatusDto.setStatus(4);
-                    batchJobStatusDto.setDescription("El trabaja ha sido completado.");
+                    batchJobStatusDto.setDescription("The job has completed.");
                     break;
                 default:
                     batchJobStatusDto.setStatus(5);
-                    batchJobStatusDto.setDescription("El trabajo tiene un estado no conocido.");
+                    batchJobStatusDto.setDescription("The job has an unknown status.");
                     break;
             }
-                
+
             return BackendResponse.ok(batchJobStatusDto, Response.Status.OK);
 
         } catch (Exception ex) {
-            this.logger.log(Level.SEVERE, "Ocurrió un error no esperado al consultar el estado del batch para generar pokemones.", ex);
-            return BackendResponse.error("Ocurrió un error no esperadoal consultar estado del batch para generar pokemones.", Response.Status.INTERNAL_SERVER_ERROR);
+            this.logger.log(Level.SEVERE, "An unexpected error occurred while querying the batch status to generate pokemons.", ex);
+            return BackendResponse.error("An unexpected error occurred while querying the batch status to generate pokemons.", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -66,4 +66,11 @@ public class BackendResponse {
         this.httpStatus = httpStatus;
     }
 
+    public String getInternalMsg() {
+        return internalMsg;
+    }
+
+    public void setInternalMsg(String internalMsg) {
+        this.internalMsg = internalMsg;
+    }
 }
