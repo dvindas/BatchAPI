@@ -1,2 +1,2 @@
 # BatchAPI
-Ejemplo de API REST + JSR-352 BATCH API para JAVA EE
+Example of REST API + JSR-352 BATCH API for JAVA EE
